@@ -16,6 +16,7 @@ import com.example.minispringexample.beans.exceptions.base.IBusinessAssertExcept
  */
 public enum BasicBeansExceptionImpl implements IBusinessAssertException {
 
+    BEANS_EXCEPTION(20000, "Bean 对象发生异常"),
     BEANS_INSTANTIATION_EXCEPTION(20001, "Bean 对象的实例化发生异常"),
     BEANS_ILLEGAL_ACCESS_EXCEPTION(20002, "Bean 对象发生非法获取异常"),
     BEANS_VALUE_NULL_EXCEPTION(20003, "Bean 对象为空"),

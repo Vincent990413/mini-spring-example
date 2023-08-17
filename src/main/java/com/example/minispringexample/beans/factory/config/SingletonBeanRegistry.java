@@ -1,7 +1,5 @@
 package com.example.minispringexample.beans.factory.config;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @description: 单例 Bean 对象的注册表，默认情况下 Bean 对象都是单例对象。
