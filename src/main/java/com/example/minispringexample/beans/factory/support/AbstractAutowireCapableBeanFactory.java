@@ -72,9 +72,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 // 利用反射设置域值
                 BeanUtil.setFieldValue(bean, name, value);
             }
-
         } catch (Exception e) {
-
             throw BasicBeansExceptionImpl.BEANS_POPULATE_EXCEPTION.newException(e);
         }
 

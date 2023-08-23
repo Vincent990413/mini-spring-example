@@ -5,6 +5,7 @@ import com.example.minispringexample.beans.PropertyValues;
 import com.example.minispringexample.beans.factory.config.BeanDefinition;
 import com.example.minispringexample.beans.factory.config.BeanReference;
 import com.example.minispringexample.beans.factory.support.DefaultListableBeanFactory;
+import com.example.minispringexample.beans.factory.xml.XmlBeanDefinitionReader;
 import com.example.minispringexample.service.impl.BasicServiceImpl;
 import com.example.minispringexample.service.impl.HelloServiceImpl;
 import org.junit.Test;
@@ -36,7 +37,7 @@ public class SimpleBeanContainerTest {
 
 
     @Test
-    public void contextLoads() {
+    public void testWithRef() {
         // 将 HelloService Bean 对象定义（可以看做是相关信息） 注册到工厂中
         // 注意，其实我们放在工厂中的，是 BeanDefinition 而不只是 Bean 对象本身
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
@@ -44,7 +45,6 @@ public class SimpleBeanContainerTest {
         // -----------  BasicService 的 Bean 定义
         BeanDefinition beanDefOfBasicService = BeanDefinition.newBeanDefinitionNoPV(BasicServiceImpl.class);
         beanFactory.registerBeanDefinition("basicService", beanDefOfBasicService);
-
 
 
         // -----------  HelloService 的 Bean 定义
@@ -69,4 +69,13 @@ public class SimpleBeanContainerTest {
         helloService.sayHello();
     }
 
+    @Test
+    public void contextLoads() {
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+        XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
+        xmlBeanDefinitionReader.loadBeanDefinitions("classpath:spring.xml");
+
+        HelloServiceImpl helloServiceImpl = (HelloServiceImpl) beanFactory.getBean("helloServiceImpl");
+        helloServiceImpl.sayHello();
+    }
 }

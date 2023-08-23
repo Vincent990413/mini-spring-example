@@ -14,5 +14,5 @@ import lombok.*;
 @Getter
 @ToString
 public class BasicServiceImpl implements BasicService {
-
+    private String info;
 }

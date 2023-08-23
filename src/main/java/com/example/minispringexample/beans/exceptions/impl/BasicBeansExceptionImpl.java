@@ -21,8 +21,14 @@ public enum BasicBeansExceptionImpl implements IBusinessAssertException {
     BEANS_ILLEGAL_ACCESS_EXCEPTION(20002, "Bean 对象发生非法获取异常"),
     BEANS_VALUE_NULL_EXCEPTION(20003, "Bean 对象为空"),
     BEANS_POPULATE_EXCEPTION(20004, "Bean 对象填充异常"),
-    ;
 
+    BEANS_XML_PARSE_EXCEPTION(20005, "解析 XML Bean 对象异常"),
+    BEANS_CLASS_NOT_FOUND_EXCEPTION(20006, "无法找到 CLass 异常"),
+
+    BEANS_XML_NAME_ATTRIBUTE_EMPTY_EXCEPTION(20007, "Bean XML 中的 name 属性为空"),
+    BEANS_XML_BEAN_NAME_ATTRIBUTE_DUPLICATE_EXCEPTION(20008, "Bean XML 中的 beanName 属性重复")
+
+    ;
 
     private int code;
 

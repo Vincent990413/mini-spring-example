@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	         http://www.springframework.org/schema/beans/spring-beans.xsd
+		 http://www.springframework.org/schema/context
+		 http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <bean id="helloServiceImpl" class="com.example.minispringexample.service.impl.HelloServiceImpl">
+        <property name="info" value="这是一段 HelloService 的 info 介绍字符串"/>
+        <property name="basicService" ref="basicServiceImpl"/>
+    </bean>
+
+    <bean id="basicServiceImpl" class="com.example.minispringexample.service.impl.BasicServiceImpl">
+        <property name="info" value="这是一段 BasicService 的 info 介绍字符串"/>
+    </bean>
+</beans>

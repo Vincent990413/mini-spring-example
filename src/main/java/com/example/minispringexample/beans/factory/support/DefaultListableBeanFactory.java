@@ -23,7 +23,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
      * @return 指定Bean名称的 BeanDefinition 对象。
      */
     @Override
-    protected BeanDefinition getBeanDefinition(String beanName) {
+    public BeanDefinition getBeanDefinition(String beanName) {
         BeanDefinition beanDefinition = beanDefinitionMap.get(beanName);
         BasicBeansExceptionImpl
                 .BEANS_VALUE_NULL_EXCEPTION
@@ -40,5 +40,26 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     @Override
     public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) {
         beanDefinitionMap.put(beanName, beanDefinition);
+    }
+
+    /**
+     * 检查是否存在具有给定名称的 BeanDefinition。
+     *
+     * @param beanName 要检查是否存在的Bean的名称。
+     * @return 如果存在具有给定名称的 BeanDefinition，则为true；否则为false。
+     */
+    @Override
+    public boolean containsBeanDefinition(String beanName) {
+        return beanDefinitionMap.containsKey(beanName);  // 检查 beanDefinitionMap 中是否包含给定名称的 BeanDefinition
+    }
+
+    /**
+     * 获取已注册的所有 BeanDefinition 的名称。
+     *
+     * @return 包含已注册的所有 BeanDefinition 名称的字符串数组。
+     */
+    @Override
+    public String[] getBeanDefinitionNames() {
+        return beanDefinitionMap.keySet().toArray(new String[0]);  // 将已注册的所有 BeanDefinition 名称转换为字符串数组返回
     }
 }

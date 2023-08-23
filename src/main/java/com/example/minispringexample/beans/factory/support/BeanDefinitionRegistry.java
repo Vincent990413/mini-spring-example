@@ -13,4 +13,10 @@ import com.example.minispringexample.beans.factory.config.BeanDefinition;
 public interface BeanDefinitionRegistry {
 
     void registerBeanDefinition(String beanName, BeanDefinition beanDefinition);
+
+    String[] getBeanDefinitionNames();
+
+    BeanDefinition getBeanDefinition(String beanName);
+
+    boolean containsBeanDefinition(String beanName);
 }
