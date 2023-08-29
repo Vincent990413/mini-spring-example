@@ -10,7 +10,7 @@ import com.example.minispringexample.beans.factory.support.AbstractBeanDefinitio
 import com.example.minispringexample.beans.factory.support.BeanDefinitionRegistry;
 import com.example.minispringexample.core.io.Resource;
 import com.example.minispringexample.core.io.ResourceLoader;
-import com.example.minispringexample.exceptions.impl.BasicBeansExceptionImpl;
+import com.example.minispringexample.beans.exceptions.impl.BasicBeansExceptionImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

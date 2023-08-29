@@ -1,18 +1,14 @@
 package com.example.minispringexample.beans.factory.support;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.ArrayUtil;
 import com.example.minispringexample.beans.PropertyValue;
 import com.example.minispringexample.beans.PropertyValues;
-import com.example.minispringexample.beans.exceptions.base.BusinessException;
+import com.example.minispringexample.beans.factory.config.AutowireCapableBeanFactory;
 import com.example.minispringexample.beans.factory.config.BeanDefinition;
 import com.example.minispringexample.beans.factory.config.BeanReference;
 import com.example.minispringexample.beans.factory.support.strategy.InstantiationStrategy;
 import com.example.minispringexample.beans.factory.support.strategy.impl.SimpleInstantiationStrategy;
-import com.example.minispringexample.exceptions.impl.BasicBeansExceptionImpl;
-import lombok.extern.slf4j.Slf4j;
-
-import java.util.Arrays;
+import com.example.minispringexample.beans.exceptions.impl.BasicBeansExceptionImpl;
 
 /**
  * @description: 抽象类， 用于将 Bean 的相关信息添加到工厂中。其中的 doCreateBean 方法可用于子类具体实现。
@@ -20,7 +16,8 @@ import java.util.Arrays;
  * @author: Vincent
  * @date: 2023/8/10 11:12
  */
-public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory {
+public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory
+        implements AutowireCapableBeanFactory {
 
     // 默认为 Bean 对象的无参构造方法
     private InstantiationStrategy instantiationStrategy = new SimpleInstantiationStrategy();
@@ -31,7 +28,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     protected Object doCreateBean(String beanName, BeanDefinition beanDefinition) {
-        Class<?> beanClass = beanDefinition.getBeanClass();
         Object bean = null;
         try {
             // 实例化 Bean 对象

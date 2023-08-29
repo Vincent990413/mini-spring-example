@@ -1,7 +1,7 @@
 package com.example.minispringexample.beans.exceptions.base;
 
 
-import com.example.minispringexample.exceptions.enumerate.IResponseEnum;
+import com.example.minispringexample.beans.exceptions.enumerate.IResponseEnum;
 
 /**
  * <code>BusinessAssertException</code> 是最关键的接口：

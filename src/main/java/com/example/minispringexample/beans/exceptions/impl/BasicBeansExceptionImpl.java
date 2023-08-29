@@ -1,4 +1,4 @@
-package com.example.minispringexample.exceptions.impl;
+package com.example.minispringexample.beans.exceptions.impl;
 
 import com.example.minispringexample.beans.exceptions.base.IBusinessAssertException;
 
@@ -27,7 +27,6 @@ public enum BasicBeansExceptionImpl implements IBusinessAssertException {
 
     BEANS_XML_NAME_ATTRIBUTE_EMPTY_EXCEPTION(20007, "Bean XML 中的 name 属性为空"),
     BEANS_XML_BEAN_NAME_ATTRIBUTE_DUPLICATE_EXCEPTION(20008, "Bean XML 中的 beanName 属性重复")
-
     ;
 
     private int code;

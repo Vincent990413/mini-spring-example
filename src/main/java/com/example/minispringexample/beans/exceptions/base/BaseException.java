@@ -1,6 +1,6 @@
 package com.example.minispringexample.beans.exceptions.base;
 
-import com.example.minispringexample.exceptions.enumerate.IResponseEnum;
+import com.example.minispringexample.beans.exceptions.enumerate.IResponseEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

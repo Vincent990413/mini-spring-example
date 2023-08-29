@@ -1,4 +1,4 @@
-package com.example.minispringexample.exceptions.enumerate;
+package com.example.minispringexample.beans.exceptions.enumerate;
 
 /**
  * 响应信息的枚举值模板接口

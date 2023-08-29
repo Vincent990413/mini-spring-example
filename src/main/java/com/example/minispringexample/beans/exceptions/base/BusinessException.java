@@ -1,7 +1,7 @@
 package com.example.minispringexample.beans.exceptions.base;
 
 
-import com.example.minispringexample.exceptions.enumerate.IResponseEnum;
+import com.example.minispringexample.beans.exceptions.enumerate.IResponseEnum;
 
 /**
  * 业务型异常类 由<code>BaseException</code>继承而来

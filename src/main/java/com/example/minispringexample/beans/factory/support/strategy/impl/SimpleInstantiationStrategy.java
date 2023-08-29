@@ -6,7 +6,7 @@ import com.example.minispringexample.beans.factory.support.strategy.Instantiatio
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import com.example.minispringexample.exceptions.impl.BasicBeansExceptionImpl;
+import com.example.minispringexample.beans.exceptions.impl.BasicBeansExceptionImpl;
 
 /**
  * @description:

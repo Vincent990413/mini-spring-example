@@ -1,7 +1,9 @@
 package com.example.minispringexample.beans.factory.support;
 
+import com.example.minispringexample.beans.exceptions.base.BusinessException;
+import com.example.minispringexample.beans.factory.ConfigurableListableBeanFactory;
 import com.example.minispringexample.beans.factory.config.BeanDefinition;
-import com.example.minispringexample.exceptions.impl.BasicBeansExceptionImpl;
+import com.example.minispringexample.beans.exceptions.impl.BasicBeansExceptionImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +15,8 @@ import java.util.Map;
  * @author: Vincent
  * @date: 2023/8/10 11:44
  */
-public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory implements BeanDefinitionRegistry {
+public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
+        implements ConfigurableListableBeanFactory, BeanDefinitionRegistry {
     private final Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
 
     /**
@@ -53,6 +56,25 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
         return beanDefinitionMap.containsKey(beanName);  // 检查 beanDefinitionMap 中是否包含给定名称的 BeanDefinition
     }
 
+    @Override
+    public <T> Map<String, T> getBeansOfType(Class<T> type) {
+        Map<String, T> result = new HashMap<>();
+        beanDefinitionMap.forEach((beanName, beanDefinition) -> {
+            Class<?> beanClass = null;
+            try {
+                beanClass = beanDefinition.getBeanClass();
+            } catch (BusinessException e) {
+                throw new RuntimeException(e);
+            }
+
+            if (type.isAssignableFrom(beanClass)) {
+                T bean = (T) getBean(beanName);
+                result.put(beanName, bean);
+            }
+        });
+        return result;
+    }
+
     /**
      * 获取已注册的所有 BeanDefinition 的名称。
      *
@@ -62,4 +84,5 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     public String[] getBeanDefinitionNames() {
         return beanDefinitionMap.keySet().toArray(new String[0]);  // 将已注册的所有 BeanDefinition 名称转换为字符串数组返回
     }
+
 }
