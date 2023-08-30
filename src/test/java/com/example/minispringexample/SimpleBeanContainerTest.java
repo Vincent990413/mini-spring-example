@@ -6,6 +6,9 @@ import com.example.minispringexample.beans.factory.config.BeanDefinition;
 import com.example.minispringexample.beans.factory.config.BeanReference;
 import com.example.minispringexample.beans.factory.support.DefaultListableBeanFactory;
 import com.example.minispringexample.beans.factory.xml.XmlBeanDefinitionReader;
+import com.example.minispringexample.processor.CustomBeanFactoryPostProcessor;
+import com.example.minispringexample.processor.CustomLoggingBeanPostProcessor;
+import com.example.minispringexample.processor.CustomPermissionCheckBeanPostProcessor;
 import com.example.minispringexample.service.impl.BasicServiceImpl;
 import com.example.minispringexample.service.impl.HelloServiceImpl;
 import org.junit.Test;
@@ -75,7 +78,27 @@ public class SimpleBeanContainerTest {
         XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
         xmlBeanDefinitionReader.loadBeanDefinitions("classpath:spring.xml");
 
+
+
         HelloServiceImpl helloServiceImpl = (HelloServiceImpl) beanFactory.getBean("helloServiceImpl");
         helloServiceImpl.sayHello();
+    }
+
+    @Test
+    public void customBeanFactoryPostProcessor() {
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+        XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
+        xmlBeanDefinitionReader.loadBeanDefinitions("classpath:spring.xml");
+
+        CustomBeanFactoryPostProcessor customBeanFactoryPostProcessor = new CustomBeanFactoryPostProcessor();
+        customBeanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
+
+        CustomPermissionCheckBeanPostProcessor customPermissionCheckBeanPostProcessor = new CustomPermissionCheckBeanPostProcessor();
+        CustomLoggingBeanPostProcessor customLoggingBeanPostProcessor = new CustomLoggingBeanPostProcessor();
+        beanFactory.addBeanPostProcessor(customPermissionCheckBeanPostProcessor);
+        // beanFactory.addBeanPostProcessor(customLoggingBeanPostProcessor);
+
+        BasicServiceImpl basicServiceImpl = (BasicServiceImpl) beanFactory.getBean("basicServiceImpl");
+
     }
 }

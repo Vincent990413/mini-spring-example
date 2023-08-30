@@ -21,6 +21,9 @@ public class HelloServiceImpl implements HelloService {
 
     private BasicServiceImpl basicService;
 
+    // 这个也是需要填充的属性 是通过 BeanFactoryPostProcessor 后置处理器动态添加的
+    private String version;
+
     @Override
     public void sayHello() {
         System.out.println("hello");
